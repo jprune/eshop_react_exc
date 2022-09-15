@@ -158,10 +158,10 @@ function Header({ cart }) {
     >
       <AppBar
         position="static"
-        className="flex justify-center items-center"
+        className="flex items-center bg-cyan-700"
       >
-        <Toolbar className="flex w-full bg-cyan-700">
-          <div className="flex justify-center items-center w-1/3">
+        <Toolbar className="flex justify-between w-10/12 ">
+          <div className="flex justify-center items-center">
             <IconButton
               size="large"
               edge="start"
@@ -176,11 +176,11 @@ function Header({ cart }) {
               noWrap
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
-              className="text-2xl flex"
+              className="text-2xl ml-2 mr-8"
             >
               <AppleIcon fontSize="large" />
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="flex justify-center items-center">
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="flex justify-center items-center ml-10">
               {categories.map((category) => (
                 <Button
                   key={category}
@@ -191,18 +191,16 @@ function Header({ cart }) {
               ))}
             </Box>
           </div>
-          <div className="flex justify-center items-center w-1/3">
-            <Search className="w-full">
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
-          </div>
-          <div className="flex justify-center items-center w-1/3">
+          <Search className="w-4/12">
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          <div className="flex justify-center items-center ">
             {/* <Box sx={{ flexGrow: 1 }} /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton

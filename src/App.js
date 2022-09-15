@@ -1,8 +1,6 @@
-import { Button } from '@mui/material';
 import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Card from './components/Card';
 import CardContainer from './components/CardContainer';
 
 function App() {
@@ -164,10 +162,10 @@ function App() {
     setCart((current) => [...current, { cartItem }]);
   };
   return (
-    <div>
-      <Header cart={cart} />
+    <div className="flex flex-wrap">
+      <Header cart={cart} className="flex justify-between w-full" />
       {/* {shopData.map((item) => <Card data={item} />)} */}
-      <CardContainer shopData={shopData} setStateOfCart={setStateOfCart} />
+      <CardContainer shopData={shopData} setStateOfCart={setStateOfCart} cart={cart} className="w-full" />
       { console.log(cart)}
     </div>
   );

@@ -10,6 +10,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
+import ItemModal from './ItemModal';
+
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -21,9 +23,10 @@ const ExpandMore = styled((props) => {
     }),
   }));
 
-export default function MediaCard({ data, setStateOfCart }) {
+export default function MediaCard({ data, setStateOfCart, cart }) {
   const { name, descr, ram, image, price, rating, reviews, sold } = data;
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -31,22 +34,27 @@ export default function MediaCard({ data, setStateOfCart }) {
 
   const handleClick = () => {
     setStateOfCart({ name, image, price, rating })
+    setOpen(!open)
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="mx-2 border-gray-400">
+    <Card 
+    sx={{ border: '1px solid rgba(0,0,0,0.2)' }} 
+    className={ !expanded 
+    ? "flex flex-col justify-start items-center w-[350px] h-[500px]"
+    : "flex flex-col justify-start items-center w-[350px]"
+    }>
       <CardMedia
         component="img"
-        height="140"
         image={image}
         alt={name}
-        className="h-auto w-auto max-h-{140} max-w-{140}"
+        className="object-scale-down h-[250px]"
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent className='flex flex-col items-center'>
+        <Typography gutterBottom variant="h5" component="div" className='text-center'>
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" className='text-center'>
           {descr}
         </Typography>
       </CardContent>
@@ -60,6 +68,7 @@ export default function MediaCard({ data, setStateOfCart }) {
         >
           <ExpandMoreIcon />
         </ExpandMore>
+        <ItemModal open={open} setOpen={setOpen} cart={cart}/>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
